@@ -1,0 +1,17 @@
+{
+	"tags": [ "rc1" ],
+	"defaultRepo": "widget-core",
+	"repos": [
+		"core",
+		"has",
+		"interop",
+		"i18n",
+		"loader",
+		"routing",
+		"shim",
+		"stores",
+		"themes",
+		"widget-core",
+		"widgets"
+	]
+}
