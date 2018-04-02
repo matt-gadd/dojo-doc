@@ -1,23 +1,11 @@
 import { v, isVNode } from '@dojo/widget-core/d';
 
 const unified = require('unified');
-const markdown = require('remark-parse');
-const toc = require('remark-toc');
-const normalizeHeadings = require('remark-normalize-headings');
-const remark2rehype = require('remark-rehype');
-const strip = require('remark-strip-badges');
-const highlight = require('rehype-highlight');
-const slug = require('rehype-slug');
 const toH = require('hast-to-hyperscript');
+const rehype = require('rehype-parse');
 
 const process = unified()
-	.use(markdown)
-	.use(strip)
-	.use(normalizeHeadings)
-	.use(toc)
-	.use(remark2rehype)
-	.use(slug)
-	.use(highlight, { ignoreMissing: true })
+	.use(rehype)
 
 export default (content: string) => {
 	let key = 0;

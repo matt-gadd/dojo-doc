@@ -25,6 +25,7 @@
     "intern": "~4.1.5",
     "node-fetch": "^2.1.2",
     "raw-loader": "^0.5.1",
+    "rehype": "^5.0.1",
     "rehype-document": "^2.0.1",
     "rehype-format": "^2.2.0",
     "rehype-highlight": "^2.1.0",

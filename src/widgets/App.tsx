@@ -14,7 +14,7 @@ const { repos, tags, defaultRepo } = require('../../config.json');
 
 function getMarkdown(repo: string) {
 	const [ tag ] = tags;
-	return require(`!raw-loader!../../content/${tag}/${repo}/README.md`);
+	return require(`!raw-loader!../../content/${tag}/${repo}/README.html`);
 }
 
 export class App extends WidgetBase {
