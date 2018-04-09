@@ -5,7 +5,7 @@ const toH = require('hast-to-hyperscript');
 const rehype = require('rehype-parse');
 
 const process = unified()
-	.use(rehype)
+	.use(rehype, { fragment: true });
 
 export default (content: string) => {
 	let key = 0;
