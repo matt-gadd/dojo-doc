@@ -51,9 +51,11 @@ export class App extends WidgetBase {
 	}
 
 	private _setRepo(repo: string) {
-		if (repos.indexOf(repo) !== -1 && this._selectedRepo !== repo) {
-			this._selectedRepo = repo;
-			this._setReadme(repo);
+		if (repos.indexOf(repo) !== -1) {
+			if (this._selectedRepo !== repo) {
+				this._selectedRepo = repo;
+				this._setReadme(repo);
+			}
 		}
 		else {
 			this._setReadme(defaultRepo);
