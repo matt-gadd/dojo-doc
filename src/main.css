@@ -28,3 +28,13 @@ a.navbar-item:hover {
 	background: black;
 }
 
+pre, .hljs {
+	padding: 0;
+	background: #151818;
+}
+
+pre {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
