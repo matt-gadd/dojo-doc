@@ -110,17 +110,15 @@ export class App extends WidgetBase {
 	protected render() {
 		return (
 			<div>
-				<NavBar />
+				<NavBar>
+					{ <RepoMenu selected={ this._selectedRepo } /> }
+				</NavBar>
 				<div classes='columns'>
-					<div classes='column is-narrow is-hidden-touch' styles={ { 'position': 'fixed', 'width': '600px' } }>
-						<div classes='columns'>
-							<RepoMenu selected={ this._selectedRepo } />
-							<Toc>
-								{ this._toc }
-							</Toc>
-						</div>
+					<div classes='column is-3'>
+						<Toc>
+							{ this._toc }
+						</Toc>
 					</div>
-					<div classes='column is-narrow is-hidden-touch' styles={ { width: '600px' }}></div>
 					<Content>
 						{ this._content }
 					</Content>

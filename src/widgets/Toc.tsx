@@ -18,12 +18,10 @@ export class Toc extends WidgetBase {
 	protected render() {
 		const children = this._decorate(this.children);
 		return (
-			<div classes='column'>
-				<div classes='box'>
-					<aside classes='menu'>
-						{ children }
-					</aside>
-				</div>
+			<div classes='is-3' styles={ { position: 'fixed' } }>
+				<aside classes='menu'>
+					{ children }
+				</aside>
 			</div>
 		);
 	}

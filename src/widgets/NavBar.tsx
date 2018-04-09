@@ -10,6 +10,11 @@ export class NavBar extends WidgetBase {
 						<img src='https://dojo.io/images/logos/dojo2-logo-white.svg' height='48px' width='110px' />
 					</a>
 				</div>
+				<div classes='navbar-end'>
+					<div classes='navbar-link'>
+						{ ...this.children }
+					</div>
+				</div>
 			</nav>
 		);
 	}
