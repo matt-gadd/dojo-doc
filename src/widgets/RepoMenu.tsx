@@ -3,11 +3,10 @@ import WidgetBase from '@dojo/widget-core/WidgetBase';
 
 const { repos } = require('../../config.json');
 
-export class RepoMenu extends WidgetBase<{ onSelect: any, selected: string }> {
+export class RepoMenu extends WidgetBase<{ onSelect?: any, selected: string }> {
 	private _selectRepo(repo: string) {
 		const { onSelect } = this.properties;
 		onSelect && onSelect(repo);
-		this.invalidate();
 	}
 
 	private _renderRepoItems() {
@@ -18,6 +17,7 @@ export class RepoMenu extends WidgetBase<{ onSelect: any, selected: string }> {
 					<a
 						onclick={ () => this._selectRepo(repo) }
 						classes={ selected === repo ? 'is-active' : '' }
+						href= { `#${repo}` }
 					>
 						{ repo }
 					</a>

@@ -1,6 +1,7 @@
 import { tsx } from '@dojo/widget-core/tsx';
 import Map from '@dojo/shim/Map';
 import WidgetBase from '@dojo/widget-core/WidgetBase';
+import global from '@dojo/shim/global';
 import process from '../util/markdown';
 import { select, selectOne, orphan, transform } from '../util/vdom';
 
@@ -30,11 +31,36 @@ export class App extends WidgetBase {
 			const markdown = getMarkdown(repo);
 			this._repoRenderFuncMap.set(repo, process(markdown));
 		});
-		this._setReadme(defaultRepo);
+		this._hashChange();
+		global.addEventListener('hashchange', () => this._hashChange());
+	}
+
+	private _hashChange() {
+		const repo = global.location.hash.replace(/#/, '').replace(/\@.*/, '');
+		this._setRepo(repo);
+		const matches = global.location.hash.match(/\@(.*)/);
+		setTimeout(() => {
+			if (matches) {
+				const target = document.getElementById(global.location.hash.replace(/^#/, ''));
+				target && target.scrollIntoView();
+			}
+			else {
+				global.scrollTo(0, 0);
+			}
+		}, 200);
+	}
+
+	private _setRepo(repo: string) {
+		if (repos.indexOf(repo) !== -1 && this._selectedRepo !== repo) {
+			this._selectedRepo = repo;
+			this._setReadme(repo);
+		}
+		else {
+			this._setReadme(defaultRepo);
+		}
 	}
 
 	private _setReadme(repo: string) {
-		this._selectedRepo = repo;
 		const renderFunc = this._repoRenderFuncMap.get(repo);
 		const result = renderFunc();
 		const title = selectOne('h1', result);
@@ -44,6 +70,7 @@ export class App extends WidgetBase {
 		}
 
 		this._toc = selectOne('a < li < ul', result);
+		this._selectedRepo = repo;
 		if (this._toc) {
 			orphan(this._toc);
 			const anchors = select('a[href^="#"]', this._toc);
@@ -85,7 +112,7 @@ export class App extends WidgetBase {
 				<div classes='columns'>
 					<div classes='column is-narrow is-hidden-touch' styles={ { 'position': 'fixed', 'width': '600px' } }>
 						<div classes='columns'>
-							<RepoMenu onSelect={ this._setReadme } selected={ this._selectedRepo } />
+							<RepoMenu selected={ this._selectedRepo } />
 							<Toc>
 								{ this._toc }
 							</Toc>
