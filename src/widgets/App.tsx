@@ -46,7 +46,25 @@ export class App extends WidgetBase {
 		this._toc = selectOne('a < li < ul', result);
 		if (this._toc) {
 			orphan(this._toc);
+			const anchors = select('a[href^="#"]', this._toc);
+			anchors.forEach((anchor) => {
+				const href = (anchor.properties as any).href;
+				const target = selectOne(`${href}`, result);
+				if (target) {
+					const newId = `${repo}@${target.properties.id}`;
+					target.properties.classes = target.properties.classes || [];
+					target.properties.classes.push('header');
+					target.properties.id = newId;
+					anchor.properties.href = `#${newId}`;
+				}
+			});
 		}
+
+		const tables = select('table', result);
+		tables.forEach((table) => {
+			table.properties.classes = table.properties.classes || [];
+			table.properties.classes.push('table');
+		});
 
 		const codeBlocks = select('pre:has(code)', result);
 		codeBlocks.forEach((codeBlock, i) => transform(codeBlock, (node: any) => {
