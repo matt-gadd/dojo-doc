@@ -26,8 +26,9 @@ const green = {
 }
 
 const codeBlockStyles = {
-	'background': '#151818',
-	'margin': '10px',
+	'box-shadow': 'rgba(0, 0, 0, 0.55) 0px 20px 68px',
+	'background': '#272822',
+	'margin': '30px',
 	'border-radius': '5px',
 	'padding': '10px'
 }
