@@ -1,6 +1,6 @@
 import { tsx } from '@dojo/widget-core/tsx';
 import WidgetBase from '@dojo/widget-core/WidgetBase';
-
+import Intersection from '@dojo/widget-core/meta/Intersection';
 
 const circleStyles = {
 	'margin-right': '6px',
@@ -36,12 +36,15 @@ const codeBlockStyles = {
 
 class CodeBlock extends WidgetBase {
 	protected render() {
+		const isShell = (this.children[0] as any).children[0].properties.classes.indexOf('language-shell') !== -1;
+		const play = this.meta(Intersection).get('root').isIntersecting;
 		const redCircle = { ...circleStyles, ...red };
 		const orangeCircle = { ...circleStyles, ...orange };
 		const greenCircle = { ...circleStyles, ...green };
 		const container = { 'marginTop': '-5px' };
+		if (!isShell) {
 		return (
-			<div classes='codeblock' styles={ codeBlockStyles }>
+			<div classes='codeblock' styles={ codeBlockStyles } key='root'>
 				<div styles={ container }>
 					<div styles={ redCircle } />
 					<div styles={ orangeCircle } />
@@ -52,6 +55,21 @@ class CodeBlock extends WidgetBase {
 				</div>
 			</div>
 		);
+		} else {
+		return (
+			<div classes='codeblock' styles={ codeBlockStyles } key='root'>
+				<div styles={ container }>
+					<div styles={ redCircle } />
+					<div styles={ orangeCircle } />
+					<div styles={ greenCircle } />
+				</div>
+				<div innerHTML={
+					`<asciinema-player font-size="small" cols="120" rows="14" theme="monokai" ${play ? "autoplay" : "" } src="../../src/example2.cast"></asciinema-player>`
+				}>
+				</div>
+			</div>
+		);
+		}
 	}
 }
 

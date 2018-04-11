@@ -50,3 +50,18 @@ pre {
 	pointer-events: none;
 }
 
+.asciinema-player .control-bar {
+	display: none;
+}
+
+.asciinema-player-wrapper {
+	text-align: left;
+}
+
+.asciinema-player .loading {
+	display: none;
+}
+
+.asciinema-player .start-prompt .play-button {
+	display: none;
+}
