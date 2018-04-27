@@ -113,16 +113,14 @@ export class App extends WidgetBase {
 				<NavBar>
 					{ <RepoMenu selected={ this._selectedRepo } /> }
 				</NavBar>
-				<div classes='columns'>
-					<div classes='column is-3'>
-						<Toc>
-							{ this._toc }
-						</Toc>
-					</div>
-					<Content>
-						{ this._content }
-					</Content>
+				<div classes='tm-sidebar-left uk-visible@m'>
+					<Toc>
+						{ this._toc }
+					</Toc>
 				</div>
+				<Content>
+					{ this._content }
+				</Content>
 			</div>
 		);
 	}

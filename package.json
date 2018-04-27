@@ -40,6 +40,7 @@
     "remark-toc": "^5.0.0",
     "remark-vdom": "^5.0.0",
     "typescript": "~2.6.1",
+    "uikit": "^3.0.0-beta.42",
     "unified": "^6.1.6",
     "unified-stream": "^1.0.1"
   },

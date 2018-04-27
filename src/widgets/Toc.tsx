@@ -9,7 +9,7 @@ export class Toc extends WidgetBase {
 		return transform(target, (node: any) => {
 			const uls = select('ul', node);
 			uls && uls.forEach((ul: any) => {
-				ul.properties.classes = [ 'menu-list' ];
+				ul.properties.classes = [ 'uk-nav uk-nav-default tm-nav' ];
 			});
 			return node;
 		});
@@ -18,10 +18,8 @@ export class Toc extends WidgetBase {
 	protected render() {
 		const children = this._decorate(this.children);
 		return (
-			<div classes='is-3' styles={ { position: 'fixed' } }>
-				<aside classes='menu'>
-					{ children }
-				</aside>
+			<div>
+				{ children }
 			</div>
 		);
 	}

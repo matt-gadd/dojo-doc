@@ -5,8 +5,8 @@ export class Content extends WidgetBase {
 	protected render() {
 		const [ content ] = this.children;
 		return (
-			<div classes='column'>
-				<div classes='box'>
+			<div classes='tm-main uk-section uk-section-default'>
+				<div classes='uk-container uk-container-small uk-position-relative'>
 					{ content }
 				</div>
 			</div>

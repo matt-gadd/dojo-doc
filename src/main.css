@@ -1,44 +1,32 @@
+@import "uikit/dist/css/uikit.min";
+
+.tm-sidebar-left {
+	position: fixed;
+	top: 80px;
+	bottom: 0;
+	box-sizing: border-box;
+	width: 240px !important;
+	padding: 40px 40px 60px 40px;
+	border-right: 1px #e5e5e5 solid;
+	overflow: auto;
+}
+
+.tm-sidebar-left {
+    width: 300px !important;
+    padding: 45px 45px 60px 45px;
+}
+
 body {
 	font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 	word-wrap: break-word;
 	text-rendering: optimizelegibility;
 }
 
-h1, h2, h3, h4, h5 {
-	margin-top: 24px;
-	margin-bottom: 16px;
-	font-weight: 600;
-	line-height: 1.25;
-}
-
-h1 {
-	font-size: 2rem;
-}
-
-h2 {
-	font-size: 1.5rem;
-}
-
-h3 {
-	font-size: 1.3rem;
-}
-
-h4, h5 {
-	font-size: 1.25rem;
-}
-
-a.navbar-item:hover {
-	background: black;
-}
-
-pre, .hljs {
+pre {
 	padding: 0;
 	background: #272822;
-}
-
-pre {
 	padding-top: 10px;
-	padding-bottom: 10px;
+	/*padding-bottom: 10px;*/
 }
 
 .header::before {
@@ -188,4 +176,14 @@ pre[class*="language-"] {
 
 .token.inserted {
 	color: green;
+}
+
+pre {
+	border: none;
+	font-size: 12px;
+}
+
+address,dl,fieldset,figure,ol,p,pre,ul {
+	margin: 0px;
+		styles={ { background: 'black' } }
 }

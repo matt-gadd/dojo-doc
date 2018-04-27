@@ -4,7 +4,6 @@ import WidgetBase from '@dojo/widget-core/WidgetBase';
 const { repos } = require('../../config.json');
 
 export class RepoMenu extends WidgetBase<{ onSelect?: any, selected: string }> {
-	private _open = false;
 
 	private _selectRepo(repo: string) {
 		const { onSelect } = this.properties;
@@ -14,38 +13,27 @@ export class RepoMenu extends WidgetBase<{ onSelect?: any, selected: string }> {
 	private _renderRepoItems() {
 		return repos.map((repo: string) => {
 			return (
-				<a
-					onclick={ () => this._selectRepo(repo) }
-					classes='dropdown-item'
-					href= { `#${repo}` }
-				>
-					{ repo }
-				</a>
+				<li>
+					<a
+						onclick={ () => this._selectRepo(repo) }
+						href= { `#${repo}` }
+					>
+						{ repo }
+					</a>
+				</li>
 			)
 		});
 	}
 
-	private _toggleMenu() {
-		this._open = !this._open;
-		this.invalidate();
-	}
-
 	protected render() {
-		const classes = [ this._open ? 'is-active' : '', 'dropdown' ];
+		const { selected } = this.properties;
 		return (
-			<div classes={ classes } onclick={ () => this._toggleMenu() }>
-				<div classes='dropdown-trigger'>
-					<button classes='button' aria-haspopup='true' aria-controls='dropdown-menu'>
-						<span>{ this.properties.selected }</span>
-						<span classes='icon is-small'>
-							<i classes='fas fa-angle-down' aria-hidden='true'></i>
-						</span>
-					</button>
-				</div>
-				<div classes='dropdown-menu' id='dropdown-menu' role='menu'>
-					<div classes='dropdown-content'>
+			<div styles={ { margin: '10px' } }>
+				<button classes="uk-button uk-button-default" type="button">{ selected }</button>
+				<div uk-dropdown="pos: bottom-left">
+					<ul classes="uk-nav uk-dropdown-nav">
 						{ this._renderRepoItems() }
-					</div>
+					</ul>
 				</div>
 			</div>
 		);
