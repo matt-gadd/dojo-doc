@@ -10,6 +10,11 @@ const strip = require('remark-strip-badges');
 const highlight = require('rehype-highlight');
 const slug = require('rehype-slug');
 const html = require('rehype-stringify');
+const refractor = require('refractor');
+const rehypePrism = require('@mapbox/rehype-prism');
+
+refractor.register(require('refractor/lang/jsx'));
+refractor.register(require('./tsx'));
 
 const process = unified()
 	.use(markdown)
@@ -18,7 +23,8 @@ const process = unified()
 	.use(toc)
 	.use(remark2rehype)
 	.use(slug)
-	.use(highlight, { ignoreMissing: true })
+	/*.use(highlight, { ignoreMissing: true })*/
+	.use(rehypePrism, { ignoreMissing: true })
 	.use(html)
 	.processSync;
 
