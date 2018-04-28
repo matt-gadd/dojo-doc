@@ -92,7 +92,7 @@ export class App extends WidgetBase {
 		const tables = select('table', result);
 		tables.forEach((table) => {
 			table.properties.classes = table.properties.classes || [];
-			table.properties.classes.push('table');
+			table.properties.classes.push('uk-table', 'uk-table-striped');
 		});
 
 		const codeBlocks = select('pre:has(code)', result);
